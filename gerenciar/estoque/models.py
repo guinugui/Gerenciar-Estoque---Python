@@ -5,10 +5,10 @@ from gerenciar.produto.models import Produto
 from django.db import models
 
 # Create your models here.
-MOVIMENTO = (
-    ('e', 'entrada')
-    ('s', 'saida')
-)
+MOVIMENTO = [
+    ('e', 'entrada'),
+    ('s', 'saida'),
+]
 
 class Estoque(TimeStampedModel):
     funcionario = models.ForeignKey(User, on_delete=models.CASCADE)
