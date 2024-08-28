@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #my apps
     'gerenciar.core',
     'gerenciar.produto',
+    'gerenciar.estoque',
 ]
 
 MIDDLEWARE = [
