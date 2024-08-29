@@ -14,3 +14,7 @@ def produto_detail(request, pk):
     obj = Produto.objects.get(pk=pk) # essa linha ele faz um get pega o id daquele produto que foi clicado e salva em ojs
     context = {'object': obj}
     return render(request, template_name, context)
+
+def produto_add(request):
+    template_name = 'produto_form.html' # aqui é pra tenderizar
+    return render(request, template_name)
