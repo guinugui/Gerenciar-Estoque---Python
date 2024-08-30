@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.views.generic import CreateView
 from .models import Produto
+from .forms import ProdutoForm
 
 # Create your views here.
 def produto_list(request):  #aqui cria um lista dos objetos de produtos
@@ -18,3 +20,9 @@ def produto_detail(request, pk):
 def produto_add(request):
     template_name = 'produto_form.html' # aqui é pra tenderizar
     return render(request, template_name)
+
+
+class ProdutoCreate(CreateView):
+    model = Produto
+    template_name = 'produto_form.html'
+    form_class = ProdutoForm #classe la do html que vincula que faz criar algum produto

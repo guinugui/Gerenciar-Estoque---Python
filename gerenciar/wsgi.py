@@ -13,4 +13,6 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gerenciar.settings')
 
-application = get_wsgi_application()
+application = get_wsgi_application() 
+
+#Nessa parte e aonde fica a configuração para para comunicar com o seu projeto Django e processar as requisições HTTP.
