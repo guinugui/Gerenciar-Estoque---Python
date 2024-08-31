@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from .models import Produto
 from .forms import ProdutoForm
+
 
 # Create your views here.
 def produto_list(request):  #aqui cria um lista dos objetos de produtos
@@ -26,3 +27,8 @@ class ProdutoCreate(CreateView):
     model = Produto
     template_name = 'produto_form.html'
     form_class = ProdutoForm #classe la do html que vincula que faz criar algum produto
+    
+class ProdutoUpdate(UpdateView):
+    model = Produto
+    template_name = 'produto_form.html'
+    form_class = ProdutoForm 
