@@ -19,7 +19,10 @@ class Estoque(TimeStampedModel):
         ordering = ('-created',)
         
     def __str__(self) -> str:
-        return str(self.pk)
+        return '{} - {} - {}'.format(self.pk, self.nf, self.created.strftime('%d-%m-%Y'))
+    
+    def nf_formated(self):
+        return str(self.nf).zfill(3) # coloca o 0 a esquerda do numero mas tem que ser string
     
 class EstoqueItens(models.Model):
     estoque = models.ForeignKey(Estoque, on_delete=models.CASCADE)

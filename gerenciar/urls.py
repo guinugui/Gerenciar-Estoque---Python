@@ -20,5 +20,7 @@ from django.urls import include, path
 urlpatterns = [ #Uma lista que contém todos os padrões de URL do projeto
     path('', include('gerenciar.core.urls')),
     path('produto/', include('gerenciar.produto.urls')),
+    path ('estoque/', include('gerenciar.estoque.urls')),
     path('admin/', admin.site.urls),
+    
 ]
