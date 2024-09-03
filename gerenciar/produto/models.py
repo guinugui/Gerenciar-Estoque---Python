@@ -23,3 +23,9 @@ class Produto (models.Model):
     def get_absolute_url(self):
         return reverse_lazy("produto:produto_detail", kwargs={"pk": self.pk}) #esse codigo e para a urls para renderizar o produto detalhes em qualquer lugar usando object.get_absolute_url
     
+    def to_dict_json(self):
+        return {
+            'pk': self.pk,
+            'produto': self.produto,
+            'estoque': self.estoque,
+        }
