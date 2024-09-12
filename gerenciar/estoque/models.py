@@ -14,17 +14,20 @@ MOVIMENTO = [
 class Estoque(TimeStampedModel):
     funcionario = models.ForeignKey(User, on_delete=models.CASCADE)
     nf = models.PositiveIntegerField('nota fiscal', null=True, blank=True)
-    movimento = models.CharField(max_length= 1, choices=MOVIMENTO) # Ele mostra que entra e sai
+    movimento = models.CharField(max_length= 1, choices=MOVIMENTO, blank=True) # Ele mostra que entra e sai
     
     class Meta():
         ordering = ('-created',)
         
     def __str__(self) -> str:
-        return '{} - {} - {}'.format(self.pk, self.nf, self.created.strftime('%d-%m-%Y'))
+        if self.nf:
+            return '{} - {} - {}'.format(self.pk, self.nf, self.created.strftime('%d-%m-%Y'))
+        return '{}---{}'.format(self.pk, self.created.strftime('%d-%m-%Y'))
     
     def nf_formated(self):
-        return str(self.nf).zfill(3) # coloca o 0 a esquerda do numero mas tem que ser string
-    
+        if self.nf:
+            return str(self.nf).zfill(3) # coloca o 0 a esquerda do numero mas tem que ser string
+        return '---'
 
     
 class EstoqueEntrada(Estoque):
