@@ -1,3 +1,4 @@
+{% load static %}
 <!-- https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
 <!doctype html>
 <html lang="en">
@@ -13,18 +14,7 @@
     <!-- Font-awesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-        html{
-            margin-top: 60px;
-        }
-        .ok {
-              color: green;
-          }
-      
-        .no {
-              color: red;
-          }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     {% block css %}{% endblock css %}
 

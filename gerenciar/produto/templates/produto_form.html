@@ -2,16 +2,6 @@
 
 {% load widget_tweaks %}
 
-{% block css %}
-    <!-- CSS to show the asterisk for required fields -->
-    <style>
-        span.required:after { 
-            content: "*"; /* Adds an asterisk after the element */
-            color: red;   /* Makes the asterisk red */
-        } 
-    </style>
-{% endblock css %}
-
 {% block content %}
     <form method="POST" novalidate>
         {% csrf_token %}

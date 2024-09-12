@@ -1,0 +1,14 @@
+html{
+    margin-top: 60px;
+}
+.ok {
+      color: green;
+  }
+
+.no {
+      color: red;
+  }
+span.required:after { 
+    content: "*"; /* Adds an asterisk after the element */
+    color: red;   /* Makes the asterisk red */
+} 
