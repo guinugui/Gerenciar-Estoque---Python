@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Estoque, EstoqueItens # chamados lá de estoque/models.py
+from .models import EstoqueEntrada ,EstoqueSaida ,EstoqueItens # chamados lá de estoque/models.py
 
 # Register your models here.
 
@@ -9,8 +9,8 @@ class EstoqueItensInline(admin.TabularInline):
     extra = 0
 
 
-@admin.register(Estoque)
-class EstoqueAdmin(admin.ModelAdmin):
+@admin.register(EstoqueEntrada)
+class EstoqueEntradaAdmin(admin.ModelAdmin):
     inlines = (EstoqueItensInline,)
     list_display = (
         '__str__',
@@ -22,3 +22,14 @@ class EstoqueAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
 
 
+@admin.register(EstoqueSaida)
+class EstoqueSaidaAdmin(admin.ModelAdmin):
+    inlines = (EstoqueItensInline,)
+    list_display = (
+        '__str__',
+        'nf',
+        'funcionario',
+    )
+    search_fields = ('nf', )
+    list_filter=('funcionario',)
+    date_hierarchy = 'created'
