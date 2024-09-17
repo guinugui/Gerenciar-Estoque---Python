@@ -7,9 +7,12 @@ from .forms import EstoqueForm, EstoqueItensForm
 
 # Create your views here.
 def estoque_entrada_list(request):
-    template_name = 'estoque_entrada_list.html'
+    template_name = 'estoque_list.html'
     objects = EstoqueEntrada.objects.filter(movimento='e')
-    context = {'object_list': objects}
+    context = { 'object_list': objects,
+                'titulo': 'Entrada',
+                'url_add': 'estoque:estoque_entrada_add'
+            }
     return render(request, template_name, context)
 
 
@@ -41,9 +44,12 @@ def estoque_entrada_add(request):
 
 
 def estoque_saida_list(request):
-    template_name = 'estoque_saida_list.html'
+    template_name = 'estoque_list.html'
     objects = EstoqueSaida.objects.filter(movimento='s')
-    context = {'object_list': objects}
+    context = { 'object_list': objects,
+                'titulo': 'Saída',
+                'url_add': 'estoque:estoque_saida_add'
+            }
     return render(request, template_name, context)
 
 # Create your views here.
