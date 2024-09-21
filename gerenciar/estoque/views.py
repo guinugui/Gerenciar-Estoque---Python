@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from typing import Any
 from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
@@ -54,7 +55,7 @@ def dar_baixa_estoque(form):
 def estoque_entrada_add(request):
     template_name = 'estoque_entrada_form.html'
     movimento = 'e'
-    url = 'estoque:estoque_entrada_detail'
+    url = 'estoque:estoque_detail'
     context = estoque_add(request, template_name, movimento, url)
     if context.get('pk'):
         return HttpResponseRedirect(resolve_url(url, context.get('pk')))
@@ -98,6 +99,7 @@ def estoque_saida_detail(request, pk):
         context['url_list'] = 'estoque:estoque_saida_list'
         return context
 
+@login_required
 def estoque_add(request, template_name, movimento, url):
     estoque_form = Estoque()
     item_estoque_formset = inlineformset_factory(
@@ -128,11 +130,11 @@ def estoque_add(request, template_name, movimento, url):
     context = {'form': form, 'formset': formset }
     return context
 
-
+@login_required
 def estoque_saida_add(request):
     template_name = 'estoque_saida_form.html'
     movimento = 's'
-    url = 'estoque:estoque_saida_detail'
+    url = 'estoque:estoque_detail'
     context = estoque_add(request, template_name, movimento, url)
     if context.get('pk'):
         return HttpResponseRedirect(resolve_url(url, context.get('pk')))
