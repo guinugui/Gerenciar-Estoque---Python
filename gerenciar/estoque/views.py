@@ -1,7 +1,8 @@
+from typing import Any
 from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, resolve_url
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from gerenciar.produto.models import Produto
 from .models import Estoque, EstoqueEntrada, EstoqueSaida, EstoqueItens
 from .forms import EstoqueForm, EstoqueItensForm
@@ -27,13 +28,21 @@ class EstoqueEntradaList(ListView):
         return context
 
 # Create your views here.
-def estoque_entrada_detail(request, pk):
+def estoque_entrada_detail(request, pk):    
     template_name = 'estoque_detail.html'
     obj = EstoqueEntrada.objects.get(pk=pk)
     context = {'object': obj,
                 'url_list': 'estoque:estoque_entrada_list'}
     return render(request, template_name, context)
 
+class EstoqueEntradaDetail(DetailView):
+    model = EstoqueEntrada
+    template_name = 'estoque_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context=super(EstoqueEntradaDetail, self).get_context_data(**kwargs)
+        context['url_list'] = 'estoque:estoque_entrada_list'
+        return context
 
 def dar_baixa_estoque(form):
     # Pega os produtos a partir da instância do formulário (Estoque).
@@ -75,14 +84,22 @@ class EstoqueSaidaList(ListView):
         return context
 
 # Create your views here.
-def estoque_saida_detail(request, pk):
+def estoque_saida_detail(request, pk):    
+
     template_name = 'estoque_detail.html'
     obj = EstoqueSaida.objects.get(pk=pk)
     context = {'object': obj, 
                 'url_list': 'estoque:estoque_saida_list'
                 }
     return render(request, template_name, context)
-
+class EstoqueSaidaDetail(DetailView):
+    model = EstoqueSaida
+    template_name = 'estoque_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context=super(EstoqueSaidaDetail, self).get_context_data(**kwargs)
+        context['url_list'] = 'estoque:estoque_saida_list'
+        return context
 
 def estoque_add(request, template_name, movimento, url):
     estoque_form = Estoque()
