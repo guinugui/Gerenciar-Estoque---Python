@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Apps de terceiros
     'bootstrapform',
     'widget_tweaks',
+    'django_extensions',
     # Minhas apps
     'gerenciar.core',
     'gerenciar.produto',
