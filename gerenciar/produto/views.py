@@ -6,10 +6,13 @@ from .forms import ProdutoForm
 
 
 # Create your views here.
-def produto_list(request):  #aqui cria um lista dos objetos de produtos
+def produto_list(request):
     template_name = 'produto_list.html'
-    object = Produto.objects.all()
-    context = {'object_list': object}
+    objects = Produto.objects.all()
+    search = request.GET.get('search')
+    if search:
+        objects = objects.filter(produto__icontains=search)
+    context = {'object_list': objects}
     return render(request, template_name, context)
 
 
